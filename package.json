@@ -1,6 +1,7 @@
 {
   "name": "electron-update-mechanism-example",
-  "version": "4.0.0",
+  "productName": "electron-update-mechanism-example",
+  "version": "5.0.0",
   "description": "This is a electron update example app",
   "main": "main.js",
   "scripts": {
@@ -9,7 +10,10 @@
     "build": "electron-builder build --linux -c.extraMetadata.main=main.js -p always"
   },
   "keywords": [],
-  "author": "",
+  "author": {
+    "name": "Ashu Ghildiyal",
+    "email": "ashughildiyal5@gmail.com"
+  },
   "license": "ISC",
   "devDependencies": {
     "electron": "^10.1.3",
@@ -30,6 +34,16 @@
         "zip",
         "dmg"
       ]
+    },
+    "linux":{
+      "target": [
+          "deb",
+          "zip",
+          "AppImage"
+        ],
+      "executableName": "electron-update-mechanism-sample-app",
+      "artifactName": "${productName}.${ext}",
+      "maintainer": "Ashu Ghildiyal <ashughildiyal5@gmail.com>"
     },
     "publish": [{
       "provider": "github",
