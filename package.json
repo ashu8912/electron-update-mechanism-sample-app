@@ -18,6 +18,23 @@
     "electron-packager": "^15.1.0"
   },
   "dependencies": {
+    "electron-log": "^4.2.4",
+    "electron-updater": "^4.3.5",
     "update-electron-app": "^2.0.1"
+  },
+  "build": {
+    "appId": "com.github.ashu8912.electron-update-mechanism-sample-app",
+    "mac": {
+      "category": "public.app-category.education",
+      "target": [
+        "zip",
+        "dmg"
+      ]
+    },
+    "publish": [{
+      "provider": "github",
+      "owner": "ashu8912",
+      "repo": "electron-update-mechanism-sample-app"
+  }]
   }
 }
