@@ -32,6 +32,7 @@ autoUpdater.on('update-downloaded', (info) => {
   sendStatusToWindow('Update downloaded');
 });
 
+autoUpdater.autoDownload = true
 function createWindow () {
   // Create the browser window.
   const win = new BrowserWindow({
