@@ -1,7 +1,7 @@
 {
   "name": "electron-update-mechanism-example",
-  "version": "2.0.0",
-  "description": "",
+  "version": "3.0.0",
+  "description": "This is a electron update example app",
   "main": "main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
