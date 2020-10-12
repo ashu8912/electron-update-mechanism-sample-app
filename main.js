@@ -1,5 +1,10 @@
 const { app, BrowserWindow, ipcMain } = require('electron');
 const { autoUpdater } = require('electron-updater');
+const log = require('electron-log');
+
+autoUpdater.logger = log;
+autoUpdater.logger.transports.file.level = 'info';
+log.info('App starting...');
 
 let mainWindow;
 
@@ -15,14 +20,17 @@ function createWindow () {
   mainWindow.on('closed', function () {
     mainWindow = null;
   });
-  mainWindow.once('ready-to-show', () => {
-    autoUpdater.checkForUpdatesAndNotify();
-  });
+  autoUpdater.checkForUpdatesAndNotify();
 }
 
-app.on('ready', () => {
-  createWindow();
-});
+autoUpdater.autoDownload = true
+
+function sendStatusToWindow(text) {
+  log.info(text);
+  mainWindow.webContents.send('message', text);
+}
+
+app.whenReady().then(createWindow)
 
 app.on('window-all-closed', function () {
   if (process.platform !== 'darwin') {
@@ -39,6 +47,15 @@ app.on('activate', function () {
 ipcMain.on('app_version', (event) => {
   event.sender.send('app_version', { version: app.getVersion() });
 });
+
+autoUpdater.on('update-not-available', (info) => {
+  sendStatusToWindow('Update not available.');
+})
+
+autoUpdater.on('checking-for-update', () => {
+  console.log("checking udpate")
+  sendStatusToWindow('Checking for update...');
+})
 
 autoUpdater.on('update-available', () => {
   mainWindow.webContents.send('update_available');
