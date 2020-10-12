@@ -1,7 +1,7 @@
 {
   "name": "electron-update-mechanism-example",
   "productName": "electron-update-mechanism-example",
-  "version": "6.0.0",
+  "version": "6.0.1",
   "description": "This is a electron update example app",
   "main": "main.js",
   "scripts": {
