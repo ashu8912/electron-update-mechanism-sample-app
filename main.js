@@ -19,6 +19,8 @@ autoUpdater.on('download-progress', (progressObj) => {
   sendStatusToWindow(log_message);
 })
 
+autoUpdater.autoDownload = true
+
 function createWindow () {
   // Create the browser window.
    win = new BrowserWindow({
