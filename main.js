@@ -5,6 +5,7 @@ autoUpdater.logger = log;
 autoUpdater.logger.transports.file.level = 'info';
 log.info('App starting...');
 
+autoUpdater.checkForUpdatesAndNotify()
 function sendStatusToWindow(text) {
   log.info(text);
   win.webContents.send('message', text);

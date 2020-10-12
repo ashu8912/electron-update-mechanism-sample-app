@@ -37,8 +37,6 @@
     },
     "linux":{
       "target": [
-          "deb",
-          "zip",
           "AppImage"
         ],
       "executableName": "electron-update-mechanism-sample-app",
