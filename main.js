@@ -12,6 +12,10 @@ function sendStatusToWindow(text) {
   win.webContents.send('message', text);
 }
 
+autoUpdater.on('checking-for-update', () => {
+  sendStatusToWindow('Checking for update...');
+})
+
 autoUpdater.on('download-progress', (progressObj) => {
   let log_message = "Download speed: " + progressObj.bytesPerSecond;
   log_message = log_message + ' - Downloaded ' + progressObj.percent + '%';
@@ -33,7 +37,7 @@ function createWindow () {
 
   // and load the index.html of the app.
   win.loadFile('index.html')
-  win.once('ready-to-show', () => {
+  win.on('ready-to-show', () => {
       autoUpdater.checkForUpdatesAndNotify();
   })
 }
