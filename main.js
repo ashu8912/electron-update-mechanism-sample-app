@@ -1,11 +1,12 @@
 const { app, BrowserWindow } = require('electron')
 const log = require('electron-log');
 const {autoUpdater} = require("electron-updater");
+
+let win;
 autoUpdater.logger = log;
 autoUpdater.logger.transports.file.level = 'info';
 log.info('App starting...');
 
-autoUpdater.checkForUpdatesAndNotify()
 function sendStatusToWindow(text) {
   log.info(text);
   win.webContents.send('message', text);
@@ -36,7 +37,7 @@ autoUpdater.on('update-downloaded', (info) => {
 autoUpdater.autoDownload = true
 function createWindow () {
   // Create the browser window.
-  const win = new BrowserWindow({
+   win = new BrowserWindow({
     width: 800,
     height: 600,
     webPreferences: {
@@ -46,6 +47,7 @@ function createWindow () {
 
   // and load the index.html of the app.
   win.loadFile('index.html')
+  autoUpdater.checkForUpdatesAndNotify()
 }
 
 app.whenReady().then(createWindow)
